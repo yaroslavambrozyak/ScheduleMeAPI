@@ -2,8 +2,10 @@ package com.study.yaroslavambrozyak.schedulemeapi.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "user_acc")
 public class User {
 
     @Id
