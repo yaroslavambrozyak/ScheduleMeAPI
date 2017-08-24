@@ -22,9 +22,9 @@ public class RemindController {
         return remindService.getAllUserReminds(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST,consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public void addRemind(RemindDTO remind){
-        remindService.addRemind(remind);
+    @RequestMapping(value = "/{id}",method = RequestMethod.POST,consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public void addRemind(@PathVariable("id") long id, RemindDTO remind){
+        remindService.addRemind(id,remind);
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)

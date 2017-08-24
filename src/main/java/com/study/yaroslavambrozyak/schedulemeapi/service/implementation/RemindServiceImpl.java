@@ -2,7 +2,9 @@ package com.study.yaroslavambrozyak.schedulemeapi.service.implementation;
 
 import com.study.yaroslavambrozyak.schedulemeapi.dto.RemindDTO;
 import com.study.yaroslavambrozyak.schedulemeapi.entity.Remind;
+import com.study.yaroslavambrozyak.schedulemeapi.entity.User;
 import com.study.yaroslavambrozyak.schedulemeapi.repository.RemindRepository;
+import com.study.yaroslavambrozyak.schedulemeapi.repository.UserRepository;
 import com.study.yaroslavambrozyak.schedulemeapi.service.RemindConverter;
 import com.study.yaroslavambrozyak.schedulemeapi.service.RemindService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,8 @@ import java.util.stream.Collectors;
 public class RemindServiceImpl implements RemindService {
 
     @Autowired
+    private UserRepository userRepository;
+    @Autowired
     private RemindRepository remindRepository;
     @Autowired
     private RemindConverter remindConverter;
@@ -26,8 +30,12 @@ public class RemindServiceImpl implements RemindService {
     }
 
     @Override
-    public void addRemind(RemindDTO remind) {
-        remindRepository.save(remindConverter.convertRemindDTOToRemind(remind));
+    public void addRemind(long id,RemindDTO remindDTO) {
+        //remindRepository.save(remindConverter.convertRemindDTOToRemind(remind));
+        User user = userRepository.findUserById(id);
+        Remind remind = remindConverter.convertRemindDTOToRemind(remindDTO);
+        remind.setUser(user);
+        remindRepository.save(remind);
     }
 
     @Override

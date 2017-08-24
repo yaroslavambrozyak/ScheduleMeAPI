@@ -9,7 +9,7 @@ public interface RemindService {
 
     List<RemindDTO> getAllUserReminds(long id);
 
-    void addRemind(RemindDTO remind);
+    void addRemind(long id,RemindDTO remindDTO);
 
     void deleteRemind(long id);
 }
