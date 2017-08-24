@@ -31,7 +31,6 @@ public class RemindServiceImpl implements RemindService {
 
     @Override
     public void addRemind(long id,RemindDTO remindDTO) {
-        //remindRepository.save(remindConverter.convertRemindDTOToRemind(remind));
         User user = userRepository.findUserById(id);
         Remind remind = remindConverter.convertRemindDTOToRemind(remindDTO);
         remind.setUser(user);
