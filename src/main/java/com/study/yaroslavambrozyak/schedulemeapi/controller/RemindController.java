@@ -1,6 +1,7 @@
 package com.study.yaroslavambrozyak.schedulemeapi.controller;
 
 
+import com.study.yaroslavambrozyak.schedulemeapi.dto.RemindDTO;
 import com.study.yaroslavambrozyak.schedulemeapi.entity.Remind;
 import com.study.yaroslavambrozyak.schedulemeapi.service.RemindService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,13 +17,13 @@ public class RemindController {
     @Autowired
     private RemindService remindService;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Remind> getReminds(){
-        return remindService.getReminds();
+    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    public List<RemindDTO> getAllUserReminds(@PathVariable("id") long id){
+        return remindService.getAllUserReminds(id);
     }
 
     @RequestMapping(method = RequestMethod.POST,consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public void addRemind(Remind remind){
+    public void addRemind(RemindDTO remind){
         remindService.addRemind(remind);
     }
 

@@ -1,17 +1,19 @@
 package com.study.yaroslavambrozyak.schedulemeapi.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "user_acc")
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String userName;
     private String password;
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")
+    private Set<Remind> remindSet;
 
     public User() {
     }
@@ -44,5 +46,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Remind> getRemindSet() {
+        return remindSet;
+    }
+
+    public void setRemindSet(Set<Remind> remindSet) {
+        this.remindSet = remindSet;
     }
 }
