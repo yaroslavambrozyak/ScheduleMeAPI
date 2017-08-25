@@ -10,6 +10,7 @@ public class Remind {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(length = 100)
     private String title;
     private String description;
     @Temporal(TemporalType.TIMESTAMP)

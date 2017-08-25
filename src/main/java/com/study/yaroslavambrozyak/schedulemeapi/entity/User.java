@@ -10,6 +10,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true,length = 30)
     private String userName;
     private String password;
     @OneToMany(fetch = FetchType.LAZY,mappedBy = "user")

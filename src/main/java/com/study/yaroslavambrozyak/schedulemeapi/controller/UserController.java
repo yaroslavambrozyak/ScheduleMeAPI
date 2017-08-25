@@ -2,6 +2,7 @@ package com.study.yaroslavambrozyak.schedulemeapi.controller;
 
 import com.study.yaroslavambrozyak.schedulemeapi.dto.UserDTO;
 import com.study.yaroslavambrozyak.schedulemeapi.dto.UserRegistrationDTO;
+import com.study.yaroslavambrozyak.schedulemeapi.exception.UserRegistrationException;
 import com.study.yaroslavambrozyak.schedulemeapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/user")
@@ -23,7 +26,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.POST,consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public void register(UserRegistrationDTO user){
+    public void register(@Valid UserRegistrationDTO user) throws UserRegistrationException {
         userService.register(user);
     }
 

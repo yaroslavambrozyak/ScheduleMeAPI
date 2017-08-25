@@ -1,13 +1,18 @@
 package com.study.yaroslavambrozyak.schedulemeapi.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 
 public class RemindDTO {
 
     private long id;
+    @NotNull
+    @Size(min = 1,max = 100)
     private String title;
     private String description;
+    //@NotNull
     private Date date;
 
     public RemindDTO() {

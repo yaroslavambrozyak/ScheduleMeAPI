@@ -1,7 +1,13 @@
 package com.study.yaroslavambrozyak.schedulemeapi.dto;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class UserDTO {
+
     private long id;
+    @NotNull
+    @Size(min = 4,max = 30)
     private String userName;
 
     public UserDTO() {

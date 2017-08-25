@@ -3,6 +3,7 @@ package com.study.yaroslavambrozyak.schedulemeapi.service.implementation;
 import com.study.yaroslavambrozyak.schedulemeapi.dto.UserDTO;
 import com.study.yaroslavambrozyak.schedulemeapi.dto.UserRegistrationDTO;
 import com.study.yaroslavambrozyak.schedulemeapi.entity.User;
+import com.study.yaroslavambrozyak.schedulemeapi.exception.UserRegistrationException;
 import com.study.yaroslavambrozyak.schedulemeapi.repository.UserRepository;
 import com.study.yaroslavambrozyak.schedulemeapi.service.UserConverter;
 import com.study.yaroslavambrozyak.schedulemeapi.service.UserService;
@@ -34,10 +35,10 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void register(UserRegistrationDTO user) {
+    public void register(UserRegistrationDTO user) throws UserRegistrationException {
         User foundUser = userRepository.findUserByUserName(user.getUserName());
         if (foundUser!=null) {
-            // todo throw exception
+            throw new UserRegistrationException("user founded");
         }
         userRepository.save(userConverter.convertUserRegistrationDTOToUser(user));
     }
