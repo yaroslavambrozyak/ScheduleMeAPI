@@ -3,6 +3,7 @@ package com.study.yaroslavambrozyak.schedulemeapi.controller;
 
 import com.study.yaroslavambrozyak.schedulemeapi.dto.RemindDTO;
 import com.study.yaroslavambrozyak.schedulemeapi.entity.Remind;
+import com.study.yaroslavambrozyak.schedulemeapi.exception.UserNotFoundException;
 import com.study.yaroslavambrozyak.schedulemeapi.service.RemindService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -24,7 +25,7 @@ public class RemindController {
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.POST,consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public void addRemind(@PathVariable("id") long id, @Valid RemindDTO remind){
+    public void addRemind(@PathVariable("id") long id, @Valid RemindDTO remind) throws UserNotFoundException {
         remindService.addRemind(id,remind);
     }
 
