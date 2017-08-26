@@ -3,6 +3,7 @@ package com.study.yaroslavambrozyak.schedulemeapi.controller;
 
 import com.study.yaroslavambrozyak.schedulemeapi.dto.RemindDTO;
 import com.study.yaroslavambrozyak.schedulemeapi.entity.Remind;
+import com.study.yaroslavambrozyak.schedulemeapi.exception.RemindNotFoundException;
 import com.study.yaroslavambrozyak.schedulemeapi.exception.UserNotFoundException;
 import com.study.yaroslavambrozyak.schedulemeapi.service.RemindService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class RemindController {
     private RemindService remindService;
 
     @RequestMapping(value = "/{id}",method = RequestMethod.GET)
-    public List<RemindDTO> getAllUserReminds(@PathVariable("id") long id){
+    public List<RemindDTO> getAllUserReminds(@PathVariable("id") long id) throws UserNotFoundException {
         return remindService.getAllUserReminds(id);
     }
 
@@ -29,8 +30,13 @@ public class RemindController {
         remindService.addRemind(id,remind);
     }
 
+    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    public void updateRemind(@PathVariable("id")long id,RemindDTO remind) throws UserNotFoundException, RemindNotFoundException {
+        remindService.updateRemind(id,remind);
+    }
+
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)
-    public void deleteRemind(@PathVariable("id") long id){
+    public void deleteRemind(@PathVariable("id") long id) throws RemindNotFoundException {
         remindService.deleteRemind(id);
     }
 

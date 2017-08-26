@@ -27,8 +27,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
-    public void updateUser(@Valid UserDTO user){
-
+    public void updateUser(@PathVariable long id,@Valid UserDTO user) throws UserNotFoundException {
+        userService.updateUser(id,user);
     }
 
     @RequestMapping(value = "/{id}",method = RequestMethod.DELETE)

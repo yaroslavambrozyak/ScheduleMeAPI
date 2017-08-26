@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.configurers
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 @Configuration
 public class SecurityConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
